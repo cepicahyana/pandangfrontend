@@ -1,0 +1,376 @@
+<app-navbar></app-navbar>
+
+
+<div class="my-overlay-post" *ngIf="loadingForm === true">
+  <!--
+  <img src="assets/images/loader/ecd6bc09da634e4e2efa16b571618a22.gif" class="img-fluid">-->
+  <i class="fas fa-spinner fa-pulse" style="color: #F93A4E;font-size: 100px !important;"></i>
+</div>
+<p-toast position="top-right" [baseZIndex]="999999"></p-toast>
+
+<div [ngStyle]="{
+    'width': '100%',
+    'background-image': 'url('+background+')',
+    'background-repeat': 'no-repeat',
+    'background-position': 'center',
+    'background-attachment': 'fixed',
+    'background-size': 'cover',
+    'padding': '50px 5px 5px 5px'
+  }">
+  <div style="min-height: 900px;padding: 20px;">
+    <div class="row">
+      <div class="col-md-7 col-sm-12" style="padding-left: 0;padding-right: 0;">
+        <div class="warp-slide">
+          <mdb-carousel [isControls]="true" class="carousel slide carousel-fade" [animation]="'fade'" [interval]="3000">
+            <mdb-carousel-item *ngFor="let slider of sliderItem; index as i;">
+              <div class="view" style="width: 500px;">
+                <img class="d-block w-100 slider-img" src='{{slider.value}}' alt="">
+                <div class="mask rgba-indigo-light waves-light" mdbWavesEffect></div>
+              </div>
+            </mdb-carousel-item>
+          </mdb-carousel>
+        </div>
+        <br />
+      </div>
+      <!-- MODE 1 START -->
+      <div *ngIf='modeWeb == "1" && accessWeb == "open"' class="col-md-5 col-sm-12">
+        <div class="row" style="border-radius: 10px;padding-bottom: 50px;background-color:rgba(196,196,196,0.8);">
+          <form #f="ngForm" (ngSubmit)="postRegister(f)" ngNativeValidate>
+            <div class="row pt-5">
+              <div class="col-md-12">
+                <h5 class="text-center" style="color: #3a3a3a;font-weight: bold;">
+                  PERMOHONAN UNDANGAN HUT RI KE 75
+                  <br />
+                  DI ISTANA KEPRESIDENAN JAKARTA
+                </h5>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label">
+                    <input id="name" type="text" class="form-control" ngModel name="fullname" autocomplete="off"
+                      pInputText required />
+                    <label for="name" style="color:#3a3a3a">Nama Lengkap </label>
+                  </span>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label">
+                    <input id="name" type="text" class="form-control" [(ngModel)]="vnik" name="nik" minlength="16"
+                      [maxLength]="16" autocomplete="off" (keypress)="numberOnly($event)" pInputText required />
+                    <label for="name" style="color:#3a3a3a">Nomor Induk Kependudukan </label>
+                  </span>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label">
+                    <input id="name" type="text" class="form-control" ngModel name="kk" minlength="16" [maxLength]="16"
+                      autocomplete="off" (keypress)="numberOnly($event)" pInputText required />
+                    <label for="name" style="color:#3a3a3a">No Kartu Keluarga </label>
+                  </span>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 py-3 paddingInput">
+                <div class="btn-group btn-group-toggle btn-group-gender" data-toggle="buttons">
+                  <label [ngClass]="{'btn':true, 'btn-gender':true, 'btn-cyan':cyanActive}">
+                    <input type="radio" autocomplete="off" name="gender" checked required ngModel
+                      (click)="selectGender('l')" value="l">
+                    <i class="fas fa-mars fa-lg"></i> Laki - laki
+                  </label>
+                  <label [ngClass]="{'btn':true, 'btn-gender':true, 'btn-pink':pinkActive}"
+                    style="border-top-right-radius: 3px; border-bottom-right-radius:3px;">
+                    <input type="radio" autocomplete="off" name="gender" required ngModel (click)="selectGender('p')"
+                      value="p">
+                    <i class="fas fa-venus fa-lg"></i> Perempuan
+                  </label>
+                  <input type="hidden" [(ngModel)]="selGender" name="selGender" />
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label">
+                    <input id="name" type="text" class="form-control" minlength="11" [maxLength]="12"
+                      (keypress)="numberOnly($event)" ngModel name="phone" autocomplete="off" pInputText required
+                      [(ngModel)]="phoneModel" />
+                    <label for="name" style="color:#3a3a3a">No. HP </label>
+                  </span>
+                  <small style="color:#3a3a3a">Contoh : 08xxxxxxxxxx</small>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label">
+                    <input id="name" type="email" class="form-control" (ngModel)="email" name="email" autocomplete="off"
+                      pInputText required />
+                    <label for="name" style="color:#3a3a3a">Email </label>
+                  </span>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <p-dropdown [showClear]="true" name="province" placeholder="Pilih Provinsi" [options]="province"
+                    [(ngModel)]="selectProvince" [filter]="true" (onChange)="filCity()" required></p-dropdown>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <p-dropdown [showClear]="true" name="city" placeholder="Pilih Kota/Kabupaten" [options]="city"
+                    [(ngModel)]="selectCity" [filter]="true" required></p-dropdown>
+                </div>
+              </div>
+              <div class="col-md-12 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label float-label-address">
+                    <textarea id="float-input" [(ngModel)]="address" name="address" class="form-control form-address"
+                      rows="4" autoResize="autoResize" pInputTextarea (keyup)="checkAlamatLength()" [maxLength]="500"
+                      required></textarea>
+                    <label for="float-input" style="color:#3a3a3a">Alamat Lengkap</label>
+                    <small style="color:#3a3a3a">{{ alamatLength }} / 500</small>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-12 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label float-label-address">
+                    <textarea id="float-input" [(ngModel)]="alasanMengikuti" name="alasan_mengikuti"
+                      class="form-control form-address" rows="6" autoResize="autoResize" pInputTextarea
+                      [maxLength]="500" (keyup)="checkAlasanLength()" required></textarea>
+                    <label for="float-input" style="color:#3a3a3a">Alasan Mengikuti</label>
+                    <small style="color:#3a3a3a">{{ alasanLength }} / 500</small>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-12 pt-3 paddingInput">
+                <label>Upload Kartu Tanda Penduduk</label>
+                <p-fileUpload #fileKTP mode="advanced" nik="10090" name="upload_ktp" url="{{baseUrlAPI}}/pandang/v1/upload_ktp"
+                  accept="image/jpeg,image/png,image/jpg" maxFileSize="10000000" [auto]="false"
+                  [showUploadButton]="false" [showCancelButton]="false" chooseLabel="Pilih File"
+                  (onBeforeUpload)="onBeforeUpload($event)" [headers]="{'Authorization': getToken}"
+                  (onUpload)="onUploadKK()" (onError)="errorKTP($event)">
+                </p-fileUpload>
+                <div class="alert alert-danger mt-2" *ngIf="alertKTP == true">Silahkan Upload Kartu Tanda Penduduk Anda.
+                </div>
+              </div>
+              <div class="col-md-12 pt-3 paddingInput">
+                <label>Upload Kartu Keluarga</label>
+                <p-fileUpload #fileKK mode="advanced" name="upload_kk" url="{{baseUrlAPI}}/pandang/v1/upload_kk"
+                  accept="image/jpeg,image/png,image/jpg" maxFileSize="10000000" [auto]="false"
+                  [showUploadButton]="false" [showCancelButton]="false" chooseLabel="Pilih File"
+                  (onBeforeUpload)="onBeforeUploadKK($event)" [headers]="{'Authorization': getToken}"
+                  (onUpload)="successNotif(f)" (onError)="errorKK()"></p-fileUpload>
+                <div class="alert alert-danger mt-2" *ngIf="alertKK == true">Silahkan Upload Kartu Keluarga Anda.</div>
+              </div>
+              <div class="col-md-12 pt-3 paddingInput">
+                <div class="form-group">
+                  <label class="font-brand font-weight-bold" style="color:#3a3a3a" #alertAcara>Pilih Acara :
+                  </label><br />
+                  <p-checkbox name="visit" class="font-weight-bold" style="color:#3a3a3a" value="pagi"
+                    label="Upacara Penaikan Bendera Pagi" [(ngModel)]="selectedEvent" inputId="pg" required>
+                  </p-checkbox> <br />
+                  <p-checkbox name="visit" class="font-weight-bold" style="color:#3a3a3a" value="sore"
+                    label="Upacara Penurunan Bendera Sore" [(ngModel)]="selectedEvent" inputId="sr" required>
+                  </p-checkbox> <br />
+                  <p-checkbox name="renungan" class="font-weight-bold" style="color:#3a3a3a" value="1"
+                    label="Renungan Suci" ngModel inputId="rs" required>
+                  </p-checkbox>
+
+                  <div class="alert alert-danger mt-4" *ngIf="alertVisit == true">Minimal Pilih Satu Acara.</div>
+                </div>
+              </div>
+              <div class="col-md-12 pt-3 text-center">
+                <!--6LfKSukUAAAAABX7B6mORL3Vk4auY2LlNDM_MXSd-->
+                <re-captcha (resolved)="resolved($event)" siteKey="{{captchaKey}}" style="display: inline-block;"
+                  [(ngModel)]="captcha" #captchaControl name="captcha" required>
+                </re-captcha>
+              </div>
+              <div class="col-md-12 pt-3 text-center paddingInput">
+                <button class="btn btn-brand col-md-6" type="submit"><i class="fas fa-save"></i> DAFTAR</button>
+              </div>
+              <div class="col-md-12 text-center pt-5">
+                <a [routerLink]="['/']" style="color: #3a3a3a;"><i class="fas fa-arrow-left"></i> Kembali ke Halaman
+                  Utama</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- MODE 1 END -->
+
+      <!-- =================================================== -->
+
+      <!-- MODE 2 START -->
+      <div *ngIf='modeWeb == "2" && accessWeb == "open"' class="col-md-5 col-sm-12">
+        <div class="row" style="border-radius: 10px;padding-bottom: 50px;background-color:rgba(196,196,196,0.8);">
+          <form #f="ngForm" (ngSubmit)="postRegisterZoom(f)" ngNativeValidate>
+            <div class="row pt-5">
+              <div class="col-md-12">
+                <h5 class="text-center" style="color: #3a3a3a;font-weight: bold;">
+                  {{ 'register.registerTitle' | translate }}
+                </h5>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label">
+                    <input id="name" type="text" class="form-control" ngModel name="fullname" autocomplete="off"
+                    [maxLength]="50" pInputText required />
+                    <label for="name" style="color:#3a3a3a">{{ 'register.fullName' | translate }} <span class="">*</span> </label>
+                  </span>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 py-3 paddingInput">
+                <div class="btn-group btn-group-toggle btn-group-gender" data-toggle="buttons">
+                  <label [ngClass]="{'btn':true, 'btn-gender':true, 'btn-cyan':cyanActive}">
+                    <input type="radio" autocomplete="off" name="gender" checked required ngModel
+                      (click)="selectGender('l')" value="l">
+                    <i class="fas fa-mars fa-lg"></i> {{ 'register.male' | translate }}
+                  </label>
+                  <label [ngClass]="{'btn':true, 'btn-gender':true, 'btn-pink':pinkActive}"
+                    style="border-top-right-radius: 3px; border-bottom-right-radius:3px;">
+                    <input type="radio" autocomplete="off" name="gender" required ngModel (click)="selectGender('p')"
+                      value="p">
+                    <i class="fas fa-venus fa-lg"></i> {{ 'register.female' | translate }}
+                  </label>
+                  <input type="hidden" [(ngModel)]="selGender" name="selGender" />
+                  <input type="hidden" [(ngModel)]="langSetting" name="lang" />
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <p-dropdown [showClear]="true" name="country" [placeholder]="'register.country' | translate  "
+                    [options]="country" [(ngModel)]="selectCountry" [filter]="true" (onChange)="checkIndo()" required>
+                  </p-dropdown>
+                </div>
+              </div>
+              <div *ngIf="selectIndo == true" class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <p-dropdown [showClear]="true" name="province" [placeholder]="'register.province' | translate"
+                    [options]="province" [(ngModel)]="selectProvince" [filter]="true" (onChange)="filCity()" required>
+                  </p-dropdown>
+                </div>
+              </div>
+              <div *ngIf="selectIndo == true" class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <p-dropdown [showClear]="true" name="city" [placeholder]="'register.city' | translate"
+                    [options]="city" [(ngModel)]="selectCity" [filter]="true" required></p-dropdown>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon" style="font-size: 14px;padding-top: 11px;color: #2e2e2e;width:80px">
+                      {{ phoneCode }}
+                    </span>
+                    <span class="ui-float-label" style="width: 100%;">
+                      <input id="name" type="text" class="form-control" (keypress)="numberOnly($event)" ngModel
+                        name="phone" autocomplete="off" pInputText required [(ngModel)]="phoneModel" minlength="7" [maxLength]="15" />
+                      <label for="name" style="color:#3a3a3a">{{ 'register.phone' | translate }}  <span class="">*</span></label>
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label">
+                    <input id="name" type="email" class="form-control" [(ngModel)]="vemail" name="email" autocomplete="off"
+                      pInputText required />
+                    <label for="name" style="color:#3a3a3a">Email  <span class="">*</span></label>
+                  </span>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <p-dropdown [showClear]="true" name="job" [placeholder]="'register.job' | translate"
+                    [options]="profession" [(ngModel)]="selectProfession" (onChange)="checkJob($event)" [filter]="true"
+                    required>
+                  </p-dropdown>
+                </div>
+              </div>
+              <div *ngIf="agencyForm == true" class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label">
+                    <input id="name" type="text" class="form-control" ngModel name="instansi" autocomplete="off"
+                    [maxLength]="50" pInputText required />
+                    <label for="name" style="color:#3a3a3a">{{ 'register.agency' | translate }}  <span class="">*</span></label>
+                  </span>
+                </div>
+              </div>
+              <div *ngIf="mediaForm == true" class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label">
+                    <input id="name" type="text" class="form-control" ngModel name="media" autocomplete="off"
+                      pInputText [maxLength]="50" required />
+                    <label for="name" style="color:#3a3a3a">{{ 'register.media' | translate }}  <span class="">*</span></label>
+                  </span>
+                </div>
+              </div>
+              <div *ngIf="otherForm == true" class="col-12 col-md-6 col-lg-6 col-xl-6 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label">
+                    <input id="name" type="text" class="form-control" ngModel name="lainnya" autocomplete="off"
+                      pInputText [maxLength]="50" required />
+                    <label for="name" style="color:#3a3a3a">{{ 'register.other' | translate }}  <span class="">*</span></label>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-12 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label float-label-address">
+                    <textarea id="float-input" [(ngModel)]="address" name="address" class="form-control form-address"
+                      rows="4" autoResize="autoResize" pInputTextarea (keyup)="checkAlamatLength()" [maxLength]="500"
+                      required></textarea>
+                    <label for="float-input" style="color:#3a3a3a">{{ 'register.address' | translate }}  <span class="">*</span></label>
+                    <small style="color:#3a3a3a">{{ alamatLength }} / 500</small>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-12 pt-3 paddingInput">
+                <div class="form-group">
+                  <span class="ui-float-label float-label-address">
+                    <textarea id="float-input" [(ngModel)]="alasanMengikuti" name="alasan_mengikuti"
+                      class="form-control form-address" rows="4" autoResize="autoResize" pInputTextarea
+                      [maxLength]="500" (keyup)="checkAlasanLength()" required></textarea>
+                    <label for="float-input" style="color:#3a3a3a">{{ 'register.reason' | translate }}  <span class="">*</span></label>
+                    <small style="color:#3a3a3a">{{ alasanLength }} / 500</small>
+                  </span>
+                </div>
+              </div>
+
+              <div class="col-md-12 pt-3 paddingInput">
+                <label>{{ 'register.idcard' | translate }}  <span class="">*</span></label>
+                <p-fileUpload #fileKTP mode="advanced" nik="10090" name="upload_ktp" url="{{baseUrlAPI}}/pandang/v1/upload_ktp_zoom"
+                  accept="image/jpeg,image/png,image/jpg,image/JPG,image/PNG,image/JPEG" maxFileSize="5000000" [auto]="false"
+                  [showUploadButton]="false" [showCancelButton]="false" [chooseLabel]="'register.file' | translate"
+                  (onBeforeUpload)="onBeforeUploadZoom($event)" [headers]="{'Authorization': tokenWeb}"
+                  (onUpload)="successNotifZoom(f)" (onError)="errorKTP($event)">
+                </p-fileUpload>
+                <div class="alert alert-danger mt-2" *ngIf="alertKTP == true">
+                  {{ 'register.idcardAlert' | translate }}
+                </div>
+              </div>
+
+              <div class="col-md-12 pt-3 text-center">
+                <!--6LfKSukUAAAAABX7B6mORL3Vk4auY2LlNDM_MXSd-->
+                <re-captcha (resolved)="resolved($event)" siteKey="{{captchaKey}}" style="display: inline-block;"
+                  [(ngModel)]="captcha" #captchaControl name="captcha" required>
+                </re-captcha>
+              </div>
+              <div class="col-md-12 pt-3 text-center paddingInput">
+                <button class="btn btn-brand col-md-6" type="submit"><i class="fas fa-save"></i>
+                  {{ 'register.btnRegister' | translate }}</button>
+              </div>
+              <div class="col-md-12 text-center pt-5">
+                <a [routerLink]="['/']" style="color: #3a3a3a;"><i class="fas fa-arrow-left"></i>
+                  {{ 'register.back' | translate }}</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- MODE 2 END -->
+
+    </div>
+  </div>
+</div>

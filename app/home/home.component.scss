@@ -1,0 +1,246 @@
+.slider-img {
+  height: 100vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.carousel .carousel-control-next-icon,
+.carousel .carousel-control-prev-icon {
+  background-color: red !important;
+  box-shadow: 10px 10px;
+}
+
+.btn-daftar {
+  background-color: rgba(249, 58, 78, 0.8);
+  border-color: #f93a4e;
+  font-weight: bold;
+  font-size: 14px;
+  height: 50px;
+  width: 200px;
+  border-radius: 5px 0 0 5px;
+}
+.btn-daftar:hover {
+  background-color: rgba(249, 58, 78, 1);
+}
+
+.btn-cek {
+  background-color: rgba(234, 234, 234, 0.8);
+  border-color: #eaeaea;
+  color: #f93a4e;
+  font-weight: bold;
+  font-size: 14px;
+  height: 50px;
+  width: 200px;
+  border-radius: 0 5px 5px 0;
+}
+.btn-cek:hover {
+  background-color: rgba(234, 234, 234, 1);
+}
+
+.register-button {
+  border-radius: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #f93a4e;
+  border-color: #f93a4e;
+  font-weight: bold;
+  color: #ffffff;
+  -webkit-transition: background-color 0.6s; /* For Safari 3.0 to 6.0 */
+  transition: background-color 0.6s; /* For modern browsers */
+  -webkit-transition: color 0.3s; /* For Safari 3.0 to 6.0 */
+  transition: color 0.3s; /* For modern browsers */
+}
+.register-button:hover {
+  background-color: #ffffff;
+  color: #f93a4e;
+}
+
+.alertMantap {
+  padding: 2px 2px 5px 2px;
+  border: 1px solid red;
+}
+
+.form-control {
+  border: 1px solid #d2d8dd;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-size: 0.875rem;
+  height: calc(2.55rem + 2px);
+  padding: 0 10px;
+}
+
+.warp-video {
+  position: absolute;
+  margin-top: -250px;
+  margin-left: 25px;
+  z-index: 999;
+  overflow: hidden;
+  width: 350px;
+}
+
+.warp-button {
+  position: absolute;
+  top: 70%;
+  width:100%;
+  z-index: 999;
+  margin-top:30px;
+
+}
+
+.warp-check {
+  padding: 0 20px;
+  width: 500px;
+  margin:auto;
+  line-height:8px;
+}
+
+.warp-monitor {
+  position: absolute;
+  margin-top: -180px;
+}
+
+@media (max-width: 3000px) {
+  .warp-button {
+    top: 85%;
+  }
+}
+@media (max-width: 2000px) {
+  .warp-button {
+    top: 80%;
+  }
+}
+@media (max-width: 1900px) {
+  .warp-button {
+    top: 75%;
+  }
+}
+@media (max-width: 1699px) {
+
+}
+@media (max-width: 1200px) {
+}
+.carousel-fade{
+margin-top:-100px;
+}
+@media (max-width: 1300px) {
+
+}
+@media (max-width: 991px) {
+  .warp-video {
+    width: 100%;
+    position: relative;
+    margin-top: 0;
+    margin-left: 0;
+    padding: 20px;
+  }
+  .warp-button {
+    position: relative;
+    padding-bottom: 100px;
+  }
+  .warp-check{
+    width: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+}
+@media (max-width: 768px) {
+  .warp-video {
+    width: 100%;
+    position: relative;
+    margin-top: 0;
+    margin-left: 0;
+    padding: 20px;
+  }
+  .warp-button {
+    position: relative;
+    padding-bottom: 100px;
+  }
+  .slider-img {
+    height: 200px;
+  }
+  .warp-check{
+    width: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+}
+@media (max-width: 767px) {
+  .warp-video {
+    width: 100%;
+    position: relative;
+    margin-top: 0;
+    margin-left: 0;
+    padding: 20px;
+  }
+  .warp-button {
+    position: relative;
+    padding-bottom: 100px;
+  }
+  .slider-img {
+    height: 200px;
+  }
+  .warp-check{
+    width: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+}
+@media (max-width: 480px) {
+  .warp-video {
+    width: 100%;
+    position: relative;
+    margin-top: 0;
+    margin-left: 0;
+    padding: 20px;
+	line-height:15px;
+  }
+  .warp-button {
+    position: relative;
+    padding-bottom: 100px;
+	margin-top:0px;
+  }
+  .slider-img {
+    height: 200px;
+  }
+  .warp-check{
+    width: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+}
+@media (max-width: 320px) {
+  .slider-img {
+    height: 200px;
+  }
+
+  .warp-video {
+    width: 100%;
+    position: relative;
+    margin-top: 0;
+    margin-left: 0;
+    padding: 20px;
+  }
+  .warp-button {
+    position: relative;
+    padding-bottom: 100px;
+  }
+  .warp-check{
+    width: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+}
+
+@media (max-height: 768px) {
+  .warp-button {
+    top: 65%;
+  }
+}
+
+

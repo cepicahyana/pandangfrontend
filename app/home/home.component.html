@@ -1,0 +1,220 @@
+<app-navbar></app-navbar>
+<p-toast position="top-right" [baseZIndex]="999999"></p-toast>
+<p-dialog header="CEK PENDAFTARAN PESERTA" [(visible)]="displayCheck" [modal]="true" [baseZIndex]="10000"
+  [draggable]="false" [resizable]="false" position="top" [transitionOptions]="'300ms'" styleClass="dialogBrand">
+
+  <div style="height: 700px;overflow-y: auto;overflow-x: hidden;padding-bottom: 100px;">
+
+
+    <form #fcheck="ngForm" (ngSubmit)="checkReg(fcheck)" ngNativeValidate>
+
+      <div class="row pt-4">
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="ui-float-label">
+              <input id="name" type="text" class="form-control" [(ngModel)]="searchNIK" name="searchNIK" minlength="16"
+                [maxLength]="16" autocomplete="off" (keypress)="numberOnly($event)" pInputText required />
+              <label for="name">MASUKAN NIK </label>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="ui-float-label">
+              <input id="name" type="text" class="form-control" name="searchPhone" minlength="12" [maxLength]="12"
+                autocomplete="off" (keypress)="numberOnly($event)" pInputText required ngModel />
+              <label for="name">MASUKAN NO HP </label>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="ui-float-label">
+              <input id="name" type="email" class="form-control" name="searchEmail" pInputText required ngModel />
+              <label for="name">MASUKAN EMAIL </label>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6 text-center">
+          <!--6LfKSukUAAAAABX7B6mORL3Vk4auY2LlNDM_MXSd-->
+          <label style="color: red;" *ngIf="alertCaptchaCheck === true">Harap Isi Captcha terlebih dahulu !</label>
+          <re-captcha (resolved)="resolved($event)" siteKey="{{captchaKey}}" style="display: inline-block;" [(ngModel)]="captchaCheck"
+            #captchaCheckControl name="captchaCheck" required></re-captcha>
+        </div>
+        <div class="col-md-12 pt-3">
+          <button class="btn btn-brand btn-block" style="height: 42.8px;" type="submit">
+            <i class="fas fa-search"></i> CARI
+          </button>
+
+        </div>
+        <div class="col-md-12">
+          <hr />
+        </div>
+      </div>
+
+    </form>
+
+    <div class="row pt-4" *ngIf="loadingCheck === true">
+      <div class="col-md-12 text-center" style="vertical-align: middle;line-height: 200px;">
+        <i class="fas fa-spinner fa-pulse" style="color: #F93A4E;font-size: 100px !important;"></i>
+      </div>
+    </div>
+    <div class="row pt-4" *ngIf="notFoundCheck === true">
+      <div class="col-md-12 text-center" style="vertical-align: middle;">
+        <i class="fas fa-question" style="color: #F93A4E;font-size: 100px !important;"></i>
+        <br />
+        <br />
+        Data Peserta yang anda cari tidak ditemukan.
+      </div>
+    </div>
+
+    <div class="row pt-4" *ngIf="dataCheck === true">
+      <div class="col-md-6">
+        <img src="{{imgKTP}}" class="img-fluid">
+      </div>
+      <div class="col-md-6">
+        <img src="{{imgKK}}" class="img-fluid">
+      </div>
+    </div>
+    <div class="row pt-4" *ngIf="dataCheck === true">
+      <div class="col-md-12">
+        <h6 class="font-weight-bold">Status Pendaftaran Peserta</h6>
+        <div class="alert alert-{{statusAlertType}}" [innerHTML]="statusReg"></div>
+      </div>
+      <div class="col-md-4">
+        <h6 class="font-weight-bold">Nama Lengkap</h6>
+        <span>{{showName}}</span>
+      </div>
+      <div class="col-md-4">
+        <h6 class="font-weight-bold">NIK</h6>
+        <span>{{showNIK}}</span>
+      </div>
+      <div class="col-md-4">
+        <h6 class="font-weight-bold">KK</h6>
+        <span>{{showKK}}</span>
+      </div>
+      <div class="col-md-4 pt-4">
+        <h6 class="font-weight-bold">Jenis Kelamin</h6>
+        <span>{{showGender}}</span>
+      </div>
+      <div class="col-md-4 pt-4">
+        <h6 class="font-weight-bold">No. HP</h6>
+        <span>{{showPhone}}</span>
+      </div>
+      <div class="col-md-4 pt-4">
+        <h6 class="font-weight-bold">Email</h6>
+        <span>{{showEmail}}</span>
+      </div>
+      <div class="col-md-4 pt-4">
+        <h6 class="font-weight-bold">Provinsi</h6>
+        <span>{{showProvince}}</span>
+      </div>
+      <div class="col-md-4 pt-4">
+        <h6 class="font-weight-bold">Kota / Kabupaten</h6>
+        <span>{{showCity}}</span>
+      </div>
+      <div class="col-md-12 pt-4">
+        <h6 class="font-weight-bold">Alamat Lengkap</h6>
+        <span>{{showAddress}}</span>
+      </div>
+      <div class="col-md-12 pt-4">
+        <h6 class="font-weight-bold">Alasan Mengikuti</h6>
+        <span>{{showReason}}</span>
+      </div>
+      <div class="col-md-12 pt-4">
+        <h6 class="font-weight-bold">Permohonan Upacara Bendera</h6>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th style="width:40%">Acara</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody [innerHTML]="showReqAcara"></tbody>
+        </table>
+      </div>
+      <div class="col-md-12 pt-4">
+        <h6 class="font-weight-bold">Permohonan Renungan Suci</h6>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th style="width:40%">Acara</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody [innerHTML]="showReqSuci"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</p-dialog>
+
+<style>
+  video {
+    object-fit: fill !important;
+  }
+</style>
+<header id="home">
+  <div class="row">
+    <div class="col-md-12">
+      <mdb-carousel [isControls]="true" class="carousel slide carousel-fade" [animation]="'fade'" [interval]="sliderInterval">
+        <mdb-carousel-item *ngFor="let slider of sliderItem; index as i;">
+          <div class="view" style="width: 100%;">
+            <img class="d-block w-100 slider-img" src='{{slider.value}}' alt="">
+            <div class="mask rgba-indigo-light waves-light" mdbWavesEffect></div>
+          </div>
+        </mdb-carousel-item>
+      </mdb-carousel>
+      <div class="text-center" style="width: 100%;position: absolute;bottom: 0;padding: 10px;height: 100px;z-index: 999;">
+        <div style="margin-right: 30px">
+          <button *ngIf="showPause == true" class="btn btn-secondary btn-sm " [disabled]='disabledStop' (click)='indicator("stop")'><i
+              class="fas fa-pause"></i></button>
+          <button *ngIf="showPlay == true" class="btn btn-secondary btn-sm" [disabled]='disabledPlay' (click)='indicator("play")'><i
+              class="fas fa-play"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="warp-video" >
+    <img  *ngIf='showVideo == false' src="assets/images/thumbnail.png" class="img-fluid" style="border: 3px solid #000000;">
+    <video *ngIf='showVideo == true' height="auto" style="border: 3px solid #000000;"  width="100%" autoplay #videoPlayer loop controls>
+      <source  src="{{videoHome}}" type="video/mp4" />
+      Browser not supported
+    </video>
+  </div>
+
+  <!-- MODE UPACARA START -->
+  <div *ngIf='modeWeb == "1" && accessWeb == "open" ' class="text-center warp-button">
+    <div class="warp-check">
+      <p-checkbox name="oke" [(ngModel)]="oke" binary="true"
+      ></p-checkbox>
+      &nbsp;<span style="font-weight: bold;color: black;">Saya sudah membaca, memahami dan menyetujui Syarat dan Ketentuan yang berlaku</span>
+    </div>
+    <button class="btn btn-danger btn-daftar" (click)='toRegister()'>DAFTAR</button>
+    <button class="btn btn-secondary btn-cek" (click)='showCheck()'>CEK PENDAFTARAN </button>
+  </div>
+  <!-- MODE UPACARA END -->
+
+  <!-- MODE SOUVENIR START -->
+  <div *ngIf='modeWeb == "2" && accessWeb == "open"' class="text-center warp-button" >
+    <div class="warp-check" >
+      <p-checkbox name="oke" [(ngModel)]="oke" binary="true"
+      ></p-checkbox>
+      &nbsp;<span style="font-weight: bold;color: black;cursor:pointer;font-size:14px;text-shadow:1px 1px 1px  white;color:black;" (click)="changeOke()">{{ 'home.agree' | translate  }}</span>
+    </div>
+    <button class="btn btn-danger btn-daftar" style="border-radius: 5px;margin-top:10px;text-shadow:1px 1px 1px  white;" (click)='toRegister()'>
+      {{ 'home.btnRegister' | translate  }}
+    </button>
+  </div>
+  <!-- MODE SOUVENIR END -->
+
+  <!-- CLOSE WEB START -->
+  <div *ngIf='accessWeb == "close"' class="text-center warp-button">
+    <div class="warp-check" style="width:auto;padding:5px; max-width: 600px;background-color: rgba(249, 58, 78, 0.8);height: auto;border-radius: 10px;">
+      <h5 style="font-weight: bold;color: white;margin-top: 5px;">{{ captionClose }}</h5>
+    </div>
+  </div>
+  <!-- CLOSE WEB END -->
+
+</header>

@@ -1,0 +1,13 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="padding:0;" [ngClass]="{'lnd-navbar-active': navbarActive}">
+  <a class="navbar-brand" [routerLink]="['/']" style="padding: 0;">
+    <img src="assets/images/logo_new.png" lass="img-fluid">
+  </a>
+  <div class="langWarp">
+    <select name="lang" style="padding:5px;background-color: transparent;border-width:0;background: rgba(249, 58, 78, 0.8);color: white;border-radius: 5px;cursor: pointer;" (change)="setLang($event)">
+      <option value="id" [selected]="langSetting == 'id'">ID</option>
+      <option value="en" [selected]="langSetting == 'en'">EN</option>
+    </select>
+  </div>
+</nav>
+
+<p-toast position="top-right" [baseZIndex]="999999"></p-toast>

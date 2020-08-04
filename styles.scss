@@ -1,0 +1,95 @@
+/* You can add global styles to this file, and also import other style files */
+html {
+  scroll-behavior: smooth;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+body, html{
+    overflow-x: hidden;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif !important;
+    background-color: #bcbcbc !important;
+}
+.dashboard-wrapper{
+    background-color: #F4F4FF;
+}
+.ui-pnotify-title{
+    font-weight: bold;
+}
+.ui-pnotify-text{
+    font-size: 14px;
+}
+
+body .ui-dropdown{
+    width:100% !important;
+    height: calc(2.55rem + 2px);
+    font-size: 14px;
+    border-color: #d2d8dd !important;
+}
+    body .ui-dropdown-label{
+    padding-top: 9px !important;
+    padding-left: 10px !important;
+    }
+
+body .ui-chkbox-label{
+    font-size: 14px !important;
+}
+
+.font-brand{
+    font-size: 14px !important;
+}
+.btn-brand {
+  border-color: #F93A4E !important;
+  background-color: #F93A4E !important;
+  color:white !important;
+  font-weight: bold;
+
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active{
+  border-color: #F93A4E !important;
+  background-color: #F93A4E !important;
+}
+
+.ui-button{
+  border-color: #F93A4E !important;
+  background-color: #F93A4E !important;
+}
+
+.dialogBrand{
+  width: 800px;
+}
+
+.paddingBox{
+  padding: 25px !important;
+}
+
+.paddingInput {
+  padding-left: 25px!important;
+  padding-right: 25px !important;
+}
+
+
+
+@media (max-width: 1200px) {
+
+}
+@media (max-width: 991px) {
+
+}
+@media (max-width: 768px) {}
+@media (max-width: 767px) {}
+@media (max-width: 480px) {
+  .carousel-brand {
+    height: 130px !important;
+  }
+}
+@media (max-width: 320px) {
+  .carousel-brand {
+    height: 130px !important;
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "home": {
+    "agree": "I have read, understood and agree the Term and Conditions",
+    "btnRegister": "REGISTER NOW",
+    "alertTitle": "Information",
+    "alertRegister": "Please agree to the terms and conditions."
+
+  },
+  "register": {
+    "registerTitle": "REGISTRATION",
+    "fullName": "Full Name",
+    "male": "Male",
+    "female": "Female",
+    "country": "Select Country *",
+    "phone": "Phone Number",
+    "address": "Address",
+    "province": "Select Province *",
+    "city": "Select City *",
+    "job": "Select Profession *",
+    "reason": "Why you Follow this Event ?",
+    "idcard": "Upload Identity Card",
+    "idcardAlert": "Please Upload your Identity Card",
+    "btnRegister": "REGISTER",
+    "back": "Back to Homepage",
+    "agency": "Agency",
+    "media": "Media",
+    "other": "Other Profession",
+    "file": "Choose File",
+    "alertTitle": "Information",
+    "msgSuccess": "Your registration has successfully. Please check your Email & Whatsapp for more information."
+
+  }
+}

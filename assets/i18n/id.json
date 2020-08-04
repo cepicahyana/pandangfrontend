@@ -1,0 +1,32 @@
+{
+  "home": {
+    "agree": "Saya sudah membaca, memahami dan menyetujui Syarat dan Ketentuan yang berlaku",
+    "btnRegister": "DAFTAR",
+    "alertTitle": "Informasi",
+    "alertRegister": "Silahkan Setujui Syarat dan Ketentuan yang berlaku."
+  },
+  "register": {
+    "registerTitle": "PENDAFTARAN",
+    "fullName": "Nama Lengkap",
+    "male": "Laki - laki",
+    "female": "Perempuan",
+    "country": "Pilih Negara *",
+    "phone": "No. HP",
+    "address": "Alamat Lengkap",
+    "province": "Pilih Provinsi *",
+    "city": "Pilih Kab/Kota *",
+    "job": "Pilih Pekerjaan *",
+    "reason": "Alasan Mengikuti",
+    "idcard": "Upload Kartu Indentitas",
+    "idcardAlert": "Silahkan Upload Kartu Indentitas Anda",
+    "btnRegister": "DAFTAR",
+    "back": "Kembali ke Halama Utama",
+    "agency": "Nama Instansi",
+    "media": "Nama Media",
+    "other": "Pekerjaan Lainnya",
+    "file": "Pilih File",
+    "alertTitle": "Informasi",
+    "msgSuccess": "Anda telah berhasil daftar. Silahkan cek Whatsapp & Email Anda untuk informasi lebih lanjut."
+
+  }
+}

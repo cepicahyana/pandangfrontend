@@ -1,0 +1,83 @@
+//main color #F93A4E
+.lnd-navbar-active {
+  background-color: white !important;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 1);
+  -webkit-transition: background-color 0.6s; /* For Safari 3.0 to 6.0 */
+  transition: background-color 0.6s; /* For modern browsers */
+}
+
+.nav-link {
+  font-weight: bold !important;
+  -webkit-transition: color 0.3s; /* For Safari 3.0 to 6.0 */
+  transition: color 0.3s; /* For modern browsers */
+}
+.nav-link:hover {
+  color: #f93a4e !important;
+}
+
+.navbar-light .navbar-nav .active > .nav-link {
+  color: #f93a4e !important;
+}
+
+.langWarp {
+  position: absolute;
+  right:0;
+  top:0;
+  padding-right: 50px;
+  padding-top: 15px;
+}
+
+.navbar-brand img {
+  width: 500px !important;
+}
+
+.navbar-button {
+  border-radius: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+}
+
+.btn-hover-white {
+  background-color: #f93a4e !important;
+  -webkit-transition: background-color 0.3s; /* For Safari 3.0 to 6.0 */
+  transition: background-color 0.3s; /* For modern browsers */
+}
+.btn-hover-white:hover {
+  background-color: white !important;
+}
+
+@media (max-width: 1200px) {
+}
+@media (max-width: 991px) {
+  .langWarp {
+    padding-right: 5px;
+  }
+}
+@media (max-width: 768px) {
+  .langWarp {
+    padding-right: 5px;
+  }
+}
+@media (max-width: 767px) {
+  .langWarp {
+    padding-right: 5px;
+  }
+}
+@media (max-width: 480px) {
+  .langWarp {
+    padding-right: 5px;
+  }
+}
+@media (max-width: 320px) {
+  .nav-item-button {
+    width: 100% !important;
+  }
+  .nav-item-button-mt {
+    margin-top: 10px;
+  }
+  .langWarp {
+    padding-right: 5px;
+  }
+
+}
